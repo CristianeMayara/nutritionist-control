@@ -17,11 +17,13 @@ for (var i = 0; i < patients.length; i++) {
   if (weight <= 0 || weight >= 1000) {
     isWeightValid = false;
     tdImc.textContent = "Peso inválido";
+    patient.classList.add("invalid-patient");
   }
 
   if (height <= 0 || height >= 3.0) {
     idHeightValid = false;
     tdImc.textContent = "Altura inválida";
+    patient.classList.add("invalid-patient");
   }
 
   if (idHeightValid && isWeightValid) {
