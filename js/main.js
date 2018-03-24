@@ -1,19 +1,31 @@
-var titulo = document;
+var patients = document.querySelectorAll(".patient");
 
-console.log(document);
+for (var i = 0; i < patients.length; i++) {
+  var patient = patients[i];
 
-var pacientes = document.querySelectorAll(".paciente");
+  var tdWheight = patient.querySelector(".info-weight");
+  var weight = tdWheight.textContent;
 
-for (var i = 0; i < pacientes.length; i++) {
-  var paciente = pacientes[i];
+  var tdHeight = patient.querySelector(".info-height");
+  var height = tdHeight.textContent;
 
-  var tdPeso = paciente.querySelector(".info-peso");
-  var peso = tdPeso.textContent;
+  var tdImc = patient.querySelector(".info-imc");
 
-  var tdAltura = paciente.querySelector(".info-altura");
-  var altura = tdAltura.textContent;
+  var isWeightValid = true;
+  var idHeightValid = true;
 
-  var tdImc = paciente.querySelector(".info-imc");
-  var imc = peso / (altura * altura);
-  tdImc.textContent = imc.toFixed(2);
+  if (weight <= 0 || weight >= 1000) {
+    isWeightValid = false;
+    tdImc.textContent = "Peso inválido";
+  }
+
+  if (height <= 0 || height >= 3.0) {
+    idHeightValid = false;
+    tdImc.textContent = "Altura inválida";
+  }
+
+  if (idHeightValid && isWeightValid) {
+    var imc = weight / (height * height);
+    tdImc.textContent = imc.toFixed(2);
+  }
 }
