@@ -30,4 +30,12 @@ for (var i = 0; i < patients.length; i++) {
     var imc = weight / (height * height);
     tdImc.textContent = imc.toFixed(2);
   }
+
+  var addButton = document.querySelector("#add-patient");
+  addButton.addEventListener("click", addPatient);
+
+  function addPatient(event) {
+    event.preventDefault();
+    console.log("clique no botao");
+  }
 }
