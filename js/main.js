@@ -36,6 +36,13 @@ for (var i = 0; i < patients.length; i++) {
 
   function addPatient(event) {
     event.preventDefault();
-    console.log("clique no botao");
+
+    var form = document.querySelector("#add-form");
+
+    var name = form.name.value;
+    var weight = form.weight.value;
+    var height = form.height.value;
+    var fat = form.fat.value;
+    var imc = form.imc.value;
   }
 }
