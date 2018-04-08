@@ -30,19 +30,38 @@ for (var i = 0; i < patients.length; i++) {
     var imc = weight / (height * height);
     tdImc.textContent = imc.toFixed(2);
   }
+}
 
-  var addButton = document.querySelector("#add-patient");
-  addButton.addEventListener("click", addPatient);
+var addButton = document.querySelector("#add-patient");
+addButton.addEventListener("click", addPatient);
 
-  function addPatient(event) {
-    event.preventDefault();
+function addPatient(event) {
+  event.preventDefault();
 
-    var form = document.querySelector("#add-form");
+  var form = document.querySelector("#add-form");
 
-    var name = form.name.value;
-    var weight = form.weight.value;
-    var height = form.height.value;
-    var fat = form.fat.value;
-    var imc = form.imc.value;
-  }
+  var name = form.name.value;
+  var weight = form.weight.value;
+  var height = form.height.value;
+  var fat = form.fat.value;
+
+  var patientTr = document.createElement("tr");
+  var nameTd = document.createElement("td");
+  var weightTd = document.createElement("td");
+  var heightTd = document.createElement("td");
+  var fatTd = document.createElement("td");
+  var imcTd = document.createElement("td");
+
+  nameTd.textContent = name;
+  weightTd.textContent = weight;
+  heightTd.textContent = height;
+  fatTd.textContent = fat;
+
+  patientTr.appendChild(nameTd);
+  patientTr.appendChild(weightTd);
+  patientTr.appendChild(heightTd);
+  patientTr.appendChild(fatTd);
+
+  var table = document.querySelector("#table-patients");
+  table.appendChild(patientTr);
 }
