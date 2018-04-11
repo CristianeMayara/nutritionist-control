@@ -6,11 +6,26 @@ function addPatient(event) {
 
   var form = document.querySelector("#add-form");
 
-  var name = form.name.value;
-  var weight = form.weight.value;
-  var height = form.height.value;
-  var fat = form.fat.value;
+  var patient = getPatientFromForm(form);
 
+  var patientTr = createPatientTr(patient);
+
+  var table = document.querySelector("#table-patients");
+  table.appendChild(patientTr);
+}
+
+function getPatientFromForm(form) {
+  var patient = {
+    name: form.name.value,
+    weight: form.weight.value,
+    height: form.height.value,
+    fat: form.fat.value,
+    imc: calculateImc(weight, height)
+  };
+  return patient;
+}
+
+function createPatientTr(patient) {
   var patientTr = document.createElement("tr");
   var nameTd = document.createElement("td");
   var weightTd = document.createElement("td");
@@ -18,11 +33,11 @@ function addPatient(event) {
   var fatTd = document.createElement("td");
   var imcTd = document.createElement("td");
 
-  nameTd.textContent = name;
-  weightTd.textContent = weight;
-  heightTd.textContent = height;
-  fatTd.textContent = fat;
-  imcTd.textContent = calculateImc(weight, height);
+  nameTd.textContent = patient.name;
+  weightTd.textContent = patient.weight;
+  heightTd.textContent = patient.height;
+  fatTd.textContent = patient.fat;
+  imcTd.textContent = patient.imc;
 
   patientTr.appendChild(nameTd);
   patientTr.appendChild(weightTd);
@@ -30,6 +45,5 @@ function addPatient(event) {
   patientTr.appendChild(fatTd);
   patientTr.appendChild(imcTd);
 
-  var table = document.querySelector("#table-patients");
-  table.appendChild(patientTr);
+  return patientTr;
 }
