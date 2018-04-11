@@ -27,41 +27,15 @@ for (var i = 0; i < patients.length; i++) {
   }
 
   if (idHeightValid && isWeightValid) {
-    var imc = weight / (height * height);
-    tdImc.textContent = imc.toFixed(2);
+    tdImc.textContent = calculateImc(weight, height);
   }
 }
 
 var addButton = document.querySelector("#add-patient");
 addButton.addEventListener("click", addPatient);
 
-function addPatient(event) {
-  event.preventDefault();
-
-  var form = document.querySelector("#add-form");
-
-  var name = form.name.value;
-  var weight = form.weight.value;
-  var height = form.height.value;
-  var fat = form.fat.value;
-
-  var patientTr = document.createElement("tr");
-  var nameTd = document.createElement("td");
-  var weightTd = document.createElement("td");
-  var heightTd = document.createElement("td");
-  var fatTd = document.createElement("td");
-  var imcTd = document.createElement("td");
-
-  nameTd.textContent = name;
-  weightTd.textContent = weight;
-  heightTd.textContent = height;
-  fatTd.textContent = fat;
-
-  patientTr.appendChild(nameTd);
-  patientTr.appendChild(weightTd);
-  patientTr.appendChild(heightTd);
-  patientTr.appendChild(fatTd);
-
-  var table = document.querySelector("#table-patients");
-  table.appendChild(patientTr);
+function calculateImc(weight, height) {
+  var imc = 0;
+  imc = weight / (height * height);
+  return imc.toFixed(2);
 }
