@@ -31,9 +31,6 @@ for (var i = 0; i < patients.length; i++) {
   }
 }
 
-var addButton = document.querySelector("#add-patient");
-addButton.addEventListener("click", addPatient);
-
 function calculateImc(weight, height) {
   var imc = 0;
   imc = weight / (height * height);

@@ -20,30 +20,27 @@ function getPatientFromForm(form) {
     weight: form.weight.value,
     height: form.height.value,
     fat: form.fat.value,
-    imc: calculateImc(weight, height)
+    imc: calculateImc(form.weight.value, form.height.value)
   };
   return patient;
 }
 
 function createPatientTr(patient) {
   var patientTr = document.createElement("tr");
-  var nameTd = document.createElement("td");
-  var weightTd = document.createElement("td");
-  var heightTd = document.createElement("td");
-  var fatTd = document.createElement("td");
-  var imcTd = document.createElement("td");
+  patientTr.classList.add("patient");
 
-  nameTd.textContent = patient.name;
-  weightTd.textContent = patient.weight;
-  heightTd.textContent = patient.height;
-  fatTd.textContent = patient.fat;
-  imcTd.textContent = patient.imc;
-
-  patientTr.appendChild(nameTd);
-  patientTr.appendChild(weightTd);
-  patientTr.appendChild(heightTd);
-  patientTr.appendChild(fatTd);
-  patientTr.appendChild(imcTd);
+  patientTr.appendChild(createTdElement(patient.name, "info-name"));
+  patientTr.appendChild(createTdElement(patient.weight, "info-weight"));
+  patientTr.appendChild(createTdElement(patient.height, "info-height"));
+  patientTr.appendChild(createTdElement(patient.fat, "info-fat"));
+  patientTr.appendChild(createTdElement(patient.imc, "info-imc"));
 
   return patientTr;
+}
+
+function createTdElement(data, classToAdd) {
+  var td = document.createElement("td");
+  td.classList.add(classToAdd);
+  td.textContent = data;
+  return td;
 }
